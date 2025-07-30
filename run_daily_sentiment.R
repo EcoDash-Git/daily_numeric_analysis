@@ -26,8 +26,8 @@ date_env   <- Sys.getenv("REPORT_DATE")
 REPORT_DATE<- suppressWarnings(as.Date(date_env)) %||% Sys.Date()
 
 RMD_FILE   <- "tweet_report_daily.Rmd"
-HTML_OUT   <- "daily_sentiment_report.html"
-PDF_OUT    <- "daily_sentiment_report.pdf"
+HTML_OUT   <- "daily_numeric_report.html"
+PDF_OUT    <- "daily_numeric_report.pdf"
 
 SB_URL         <- Sys.getenv("SUPABASE_URL")
 SB_STORAGE_KEY <- Sys.getenv("SUPABASE_SERVICE_ROLE")
@@ -101,7 +101,7 @@ from_email <- if (str_detect(MAIL_FROM, "<.+@.+>")) {
 from_name  <- if (str_detect(MAIL_FROM, "<.+@.+>")) {
   str_trim(str_remove(MAIL_FROM, "<.+@.+>$"))
 } else {
-  "Sentiment Bot"
+  "Numeric Bot"
 }
 
 # NEW ── split on comma / semicolon and drop empty elements / whitespace
@@ -116,11 +116,11 @@ mj_resp <- request("https://api.mailjet.com/v3.1/send") |>
     Messages = list(list(
       From        = list(Email = from_email, Name = from_name),
       To          = to_emails,             # ← was: list(list(Email = MAIL_TO))
-      Subject     = sprintf("Daily Sentiment Report – %s", REPORT_DATE),
+      Subject     = sprintf("Daily Numeric Report – %s", REPORT_DATE),
       TextPart    = "Attached you'll find the daily sentiment report.",
       Attachments = list(list(
         ContentType   = "application/pdf",
-        Filename      = sprintf("sentiment_%s.pdf", REPORT_DATE),
+        Filename      = sprintf("numeric_%s.pdf", REPORT_DATE),
         Base64Content = base64enc::base64encode(PDF_OUT)
       ))
     ))
