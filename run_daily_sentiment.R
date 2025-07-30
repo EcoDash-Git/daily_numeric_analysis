@@ -117,7 +117,7 @@ mj_resp <- request("https://api.mailjet.com/v3.1/send") |>
       From        = list(Email = from_email, Name = from_name),
       To          = to_emails,             # ← was: list(list(Email = MAIL_TO))
       Subject     = sprintf("Daily Numeric Report – %s", REPORT_DATE),
-      TextPart    = "Attached you'll find the daily sentiment report.",
+      TextPart    = "Attached you'll find the daily numeric report.",
       Attachments = list(list(
         ContentType   = "application/pdf",
         Filename      = sprintf("numeric_%s.pdf", REPORT_DATE),
