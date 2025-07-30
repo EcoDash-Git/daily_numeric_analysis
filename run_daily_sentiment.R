@@ -31,7 +31,7 @@ PDF_OUT    <- "daily_sentiment_report.pdf"
 
 SB_URL         <- Sys.getenv("SUPABASE_URL")
 SB_STORAGE_KEY <- Sys.getenv("SUPABASE_SERVICE_ROLE")
-SB_BUCKET      <- "daily-sentiment"
+SB_BUCKET      <- "daily-numeric"
 
 MJ_API_KEY     <- Sys.getenv("MJ_API_KEY")
 MJ_API_SECRET  <- Sys.getenv("MJ_API_SECRET")
