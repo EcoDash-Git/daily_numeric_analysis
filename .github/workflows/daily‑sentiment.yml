@@ -65,8 +65,8 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: daily-sentiment-artifacts
+          name: daily-numeric-artifacts
           path: |
-            daily_sentiment_report.html
-            daily_sentiment_report.pdf
+            daily_numeric_report.html
+            daily_numeric_report.pdf
           if-no-files-found: warn
